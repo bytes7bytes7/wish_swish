@@ -1,0 +1,12 @@
+{
+    "helloWorld": "Привет, мир!",
+    "timesPushed": "Вы нажали на кнопку {times} раз",
+    "@timesPushed": {
+        "placeholders": {
+            "times": {
+                "type": "int"
+            }
+        }
+    },
+    "language": "Русский"
+}
