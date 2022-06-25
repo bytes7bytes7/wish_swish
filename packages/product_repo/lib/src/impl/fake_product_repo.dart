@@ -5,6 +5,8 @@ import 'fake_data.dart';
 const _duration = Duration(seconds: 2);
 
 class FakeProductRepo implements ProductRepo {
+  const FakeProductRepo();
+
   @override
   Future<List<Product>> load(String categoryID) {
     return Future.delayed(_duration, () {

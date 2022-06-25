@@ -1,11 +1,12 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:product_repo/product_repo.dart';
 
-class ProductWrapper {
-  ProductWrapper({
-    required this.product,
-    required this.isInCart,
-  });
+part 'product_wrapper.freezed.dart';
 
-  final Product product;
-  final bool isInCart;
+@freezed
+class ProductWrapper with _$ProductWrapper {
+  const factory ProductWrapper({
+    required Product product,
+    required bool isInCart,
+  }) = _ProductWrapper;
 }
