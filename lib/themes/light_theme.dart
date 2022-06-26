@@ -12,6 +12,7 @@ final lightTheme = ThemeData(
   primaryColor: const_colors.plainOcean,
   scaffoldBackgroundColor: const_colors.white,
   hintColor: const_colors.silverChalice,
+  disabledColor: const_colors.gallery,
   textTheme: _textTheme,
   progressIndicatorTheme: const ProgressIndicatorThemeData(
     color: const_colors.plainOcean,

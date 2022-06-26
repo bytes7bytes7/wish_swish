@@ -17,7 +17,7 @@ class NotFoundScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Text(l10n.navError),
+        child: Text(l10n.error),
       ),
     );
   }

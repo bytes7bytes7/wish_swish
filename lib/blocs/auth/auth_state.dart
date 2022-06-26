@@ -25,10 +25,5 @@ class AuthSuccessState extends AuthState {
 }
 
 class AuthFailState extends AuthState {
-  const AuthFailState({required this.reason});
-
-  final String reason;
-
-  @override
-  List<Object?> get props => [reason];
+  const AuthFailState();
 }

@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../blocs/blocs.dart';
 import '../constants/app.dart' as const_app;
 import '../constants/measures.dart' as const_measures;
 import '../constants/routes.dart' as const_routes;
@@ -63,110 +65,130 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final theme = Theme.of(context);
-
     final height = MediaQuery.of(context).size.height;
+    final l10n = context.l10n;
+    final authBloc = context.read<AuthBloc>();
 
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: const_measures.mainHorPadding,
-          ),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: SizedBox(
-              height: height,
-              child: Column(
-                children: [
-                  Flexible(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: const_measures.verPadding,
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccessState) {
+          Navigator.of(context)
+            ..popUntil((r) => r.isFirst)
+            ..pushReplacementNamed(
+              const_routes.home,
+            );
+        } else if (state is AuthFailState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(l10n.error),
+            ),
+          );
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: const_measures.mainHorPadding,
+            ),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: SizedBox(
+                height: height,
+                child: Column(
+                  children: [
+                    Flexible(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: const_measures.verPadding,
+                            ),
+                            child: SvgPicture.asset(const_app.logoPath),
                           ),
-                          child: SvgPicture.asset(const_app.logoPath),
-                        ),
-                        Text(
-                          l10n.slogan,
-                          style: theme.textTheme.headline3,
-                        ),
-                      ],
+                          Text(
+                            l10n.slogan,
+                            style: theme.textTheme.headline3,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: const_measures.midVerPadding,
-                          ),
-                          child: Text(l10n.authorization),
-                        ),
-                        Form(
-                          key: _formKey,
-                          child: Column(
+                    Flexible(
+                      child: BlocBuilder<AuthBloc, AuthState>(
+                        builder: (context, state) {
+                          final isLoading = state is AuthLoadingState;
+
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  vertical: const_measures.smallPadding,
+                                  vertical: const_measures.midVerPadding,
                                 ),
-                                child: SimpleTextField(
-                                  controller: _emailController,
-                                  hint: l10n.enterEmail,
-                                  validator: (value) {
-                                    if (value == null ||
-                                        _emailExp.allMatches(value).isEmpty) {
-                                      return 'Невалидный email';
-                                    }
-
-                                    return null;
-                                  },
+                                child: Text(l10n.authorization),
+                              ),
+                              Form(
+                                key: _formKey,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: const_measures.smallPadding,
+                                      ),
+                                      child: SimpleTextField(
+                                        controller: _emailController,
+                                        hint: l10n.enterEmail,
+                                        enabled: !isLoading,
+                                        validator: _emailValidator,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: const_measures.smallPadding,
+                                      ),
+                                      child: SimpleTextField(
+                                        controller: _passwordController,
+                                        hint: l10n.enterPassword,
+                                        enabled: !isLoading,
+                                        validator: _passwordValidator,
+                                        isObscure: true,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  vertical: const_measures.smallPadding,
+                                  vertical: const_measures.verPadding,
                                 ),
-                                child: SimpleTextField(
-                                  controller: _passwordController,
-                                  hint: l10n.enterPassword,
-                                  validator: (value) {
-                                    if (value?.isNotEmpty == true) {
-                                      return null;
-                                    }
-
-                                    return 'Введите пароль';
+                                child: ValueListenableBuilder<bool>(
+                                  valueListenable: _isValid,
+                                  builder: (context, value, child) {
+                                    return BigButton(
+                                      onPressed: (value && !isLoading)
+                                          ? () => _logIn(authBloc)
+                                          : null,
+                                      child: isLoading
+                                          ? const Center(
+                                              child: LoadingCircle(),
+                                            )
+                                          : Text(
+                                              l10n.logIn,
+                                              style: theme.textTheme.button,
+                                            ),
+                                    );
                                   },
-                                  isObscure: true,
                                 ),
                               ),
                             ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: const_measures.verPadding,
-                          ),
-                          child: ValueListenableBuilder<bool>(
-                            valueListenable: _isValid,
-                            builder: (context, value, child) {
-                              return BigButton(
-                                onPressed:
-                                    value ? () => _toHome(context) : null,
-                                title: l10n.logIn,
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -175,11 +197,28 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  void _toHome(BuildContext context) {
-    Navigator.of(context)
-      ..popUntil((r) => r.isFirst)
-      ..pushReplacementNamed(
-        const_routes.home,
-      );
+  void _logIn(AuthBloc authBloc) {
+    authBloc.add(
+      AuthLogInEvent(
+        email: _emailController.text,
+        password: _passwordController.text,
+      ),
+    );
+  }
+
+  String? _emailValidator(String? value) {
+    if (value == null || _emailExp.allMatches(value).isEmpty) {
+      return 'Невалидный email';
+    }
+
+    return null;
+  }
+
+  String? _passwordValidator(String? value) {
+    if (value?.isNotEmpty == true) {
+      return null;
+    }
+
+    return 'Введите пароль';
   }
 }

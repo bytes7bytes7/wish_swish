@@ -6,10 +6,10 @@ class BigButton extends StatelessWidget {
   const BigButton({
     super.key,
     required this.onPressed,
-    required this.title,
+    required this.child,
   });
 
-  final String title;
+  final Widget child;
   final VoidCallback? onPressed;
 
   @override
@@ -18,7 +18,7 @@ class BigButton extends StatelessWidget {
       widthFactor: _widthFactor,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(title),
+        child: child,
       ),
     );
   }

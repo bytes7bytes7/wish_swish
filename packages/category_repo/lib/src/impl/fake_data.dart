@@ -12,14 +12,14 @@ const categories = [
     id: 'categoryID2',
     title: 'Молочка',
     amountOfProducts: 2,
-    image: '',
+    image:
+        'https://media.istockphoto.com/photos/various-fresh-dairy-products-picture-id544807136?k=20&m=544807136&s=612x612&w=0&h=iqb23gbUKWgewmunHXd_yzJbYsZDa0fMDz64Ux6OJSc=',
   ),
   Category(
     id: 'categoryID3',
     title: 'Бакалея',
     amountOfProducts: 3,
-    image:
-        'https://media.istockphoto.com/photos/various-fresh-dairy-products-picture-id544807136?k=20&m=544807136&s=612x612&w=0&h=iqb23gbUKWgewmunHXd_yzJbYsZDa0fMDz64Ux6OJSc=',
+    image: '',
   ),
   Category(
     id: 'categoryID4',

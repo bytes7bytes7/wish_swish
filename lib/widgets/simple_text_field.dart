@@ -6,12 +6,14 @@ class SimpleTextField extends StatelessWidget {
     required this.controller,
     required this.hint,
     required this.validator,
+    this.enabled = true,
     this.isObscure = false,
   });
 
   final TextEditingController controller;
   final String hint;
   final String? Function(String?) validator;
+  final bool enabled;
   final bool isObscure;
 
   @override
@@ -22,6 +24,7 @@ class SimpleTextField extends StatelessWidget {
       controller: controller,
       obscureText: isObscure,
       validator: validator,
+      enabled: enabled,
       style: theme.textTheme.subtitle2,
       decoration: InputDecoration(
         hintText: hint,

@@ -15,7 +15,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   final AuthRepo _authRepo;
 
-  Future<void> _logIn(AuthLogInEvent event, Emitter<AuthState> emit) {
-    return _authRepo.logIn(event.email, event.password);
+  Future<void> _logIn(AuthLogInEvent event, Emitter<AuthState> emit) async {
+    if (state is! AuthLoadingState) {
+      emit(const AuthLoadingState());
+    }
+
+    final user = await _authRepo.logIn(event.email, event.password);
+
+    if (user != null) {
+      emit(
+        AuthSuccessState(user: user),
+      );
+    } else {
+      emit(const AuthFailState());
+    }
   }
 }

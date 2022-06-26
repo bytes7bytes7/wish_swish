@@ -105,12 +105,15 @@ class CartScreen extends StatelessWidget {
                       vertical: const_measures.verPadding,
                     ),
                     child: BigButton(
-                      title: l10n.pay,
                       onPressed: products.isNotEmpty
                           ? () {
                               cartBloc.add(const CartOrderEvent());
                             }
                           : null,
+                      child: Text(
+                        l10n.pay,
+                        style: theme.textTheme.button,
+                      ),
                     ),
                   ),
                 ],

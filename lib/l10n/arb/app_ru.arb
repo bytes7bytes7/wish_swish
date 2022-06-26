@@ -4,9 +4,9 @@
     "emptyCart": "Корзина пуста",
     "enterEmail": "Введите email",
     "enterPassword":"Введите пароль",
+    "error": "Ошибка",
     "language": "Русский",
     "logIn": "Войти",
-    "navError": "Ошибка навигации",
     "noConnection": "Нет подключения",
     "order": "Заказ №{number}",
     "@order": {
