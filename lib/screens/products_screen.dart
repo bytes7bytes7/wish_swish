@@ -57,10 +57,15 @@ class ProductsScreen extends StatelessWidget {
                           physics: const AlwaysBouncingScrollPhysics(),
                           itemCount: wrappers.length,
                           itemBuilder: (context, index) {
-                            return ProductCard(
-                              product: wrappers[index].product,
-                              isInCart: wrappers[index].isInCart,
-                              cartBloc: cartBloc,
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                top: const_measures.verPadding,
+                              ),
+                              child: ProductCard(
+                                product: wrappers[index].product,
+                                isInCart: wrappers[index].isInCart,
+                                cartBloc: cartBloc,
+                              ),
                             );
                           },
                         );

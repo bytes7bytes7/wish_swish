@@ -203,9 +203,16 @@ class _ProductListState extends State<_ProductList> {
     return ValueListenableBuilder<int>(
       valueListenable: _notifier,
       builder: (context, value, child) {
-        return ListView.builder(
+        return ListView.separated(
           physics: const AlwaysBouncingScrollPhysics(),
           itemCount: products.length,
+          separatorBuilder: (context, index) {
+            return const Divider(
+              indent: const_measures.productImageWidth +
+                  const_measures.smallPadding,
+              height: 2 * const_measures.midVerPadding,
+            );
+          },
           itemBuilder: (context, index) {
             final product = products[index];
 
