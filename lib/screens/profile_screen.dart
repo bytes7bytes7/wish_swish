@@ -86,7 +86,12 @@ class ProfileScreen extends StatelessWidget {
                   }
 
                   return const Center(
-                    child: LoadingCircle(),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: const_measures.verPadding,
+                      ),
+                      child: LoadingCircle(),
+                    ),
                   );
                 },
               ),

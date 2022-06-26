@@ -59,35 +59,37 @@ class CartScreen extends StatelessWidget {
         Expanded(
           child: BlocBuilder<CartBloc, CartState>(
             buildWhen: (prev, curr) {
-              if (curr is CartDataState && curr.products.isEmpty) {
-                listState = _ListState.empty;
-                return true;
-              }
-
-              if (listState == _ListState.init) {
-                if (curr is CartDataState) {
-                  listState = _ListState.data;
-                }
-
-                return true;
-              }
-
-              if (listState == _ListState.data) {
-                if (curr is CartDataState) {
-                  if (curr.products.isEmpty) {
+              if (curr is CartDataState) {
+                if (listState == _ListState.init) {
+                  if (curr.products.isNotEmpty) {
+                    listState = _ListState.data;
+                  } else {
                     listState = _ListState.empty;
-                    return true;
                   }
-                }
 
-                return false;
+                  return true;
+                } else if (listState == _ListState.data &&
+                    curr.products.isEmpty) {
+                  listState = _ListState.empty;
+
+                  return true;
+                }
               }
 
               return false;
             },
             builder: (context, state) {
-              if (state is CartDataState && listState == _ListState.init) {
-                listState = _ListState.data;
+              if (state is CartDataState) {
+                if (listState == _ListState.init) {
+                  if (state.products.isNotEmpty) {
+                    listState = _ListState.data;
+                  } else {
+                    listState = _ListState.empty;
+                  }
+                } else if (listState == _ListState.data &&
+                    state.products.isEmpty) {
+                  listState = _ListState.empty;
+                }
               }
 
               final products =
@@ -164,14 +166,12 @@ class _ProductList extends StatefulWidget {
 
 class _ProductListState extends State<_ProductList> {
   late final ValueNotifier<int> _notifier;
-  late final List<Product> _products;
 
   @override
   void initState() {
     super.initState();
 
     _notifier = ValueNotifier(widget.products.length);
-    _products = List.from(widget.products);
   }
 
   @override
@@ -183,13 +183,15 @@ class _ProductListState extends State<_ProductList> {
 
   @override
   Widget build(BuildContext context) {
+    final products = List<Product>.from(widget.products);
+
     if (widget.isLoading) {
       return const Center(
         child: LoadingCircle(),
       );
     }
 
-    if (_products.isEmpty) {
+    if (products.isEmpty) {
       return Center(
         child: Text(
           widget.l10n.empty,
@@ -203,15 +205,15 @@ class _ProductListState extends State<_ProductList> {
       builder: (context, value, child) {
         return ListView.builder(
           physics: const AlwaysBouncingScrollPhysics(),
-          itemCount: _products.length,
+          itemCount: products.length,
           itemBuilder: (context, index) {
-            final product = _products[index];
+            final product = products[index];
 
             return ProductCard(
               product: product,
               cartBloc: widget.cartBloc,
               isInCart: true,
-              onPressed: () => _remove(product),
+              onPressed: () => _remove(products, product),
             );
           },
         );
@@ -219,9 +221,9 @@ class _ProductListState extends State<_ProductList> {
     );
   }
 
-  void _remove(Product product) {
+  void _remove(List<Product> products, Product product) {
     widget.cartBloc.add(CartRemoveEvent(product: product));
-    _products.removeWhere((e) => e.id == product.id);
-    _notifier.value = _products.length;
+    products.removeWhere((e) => e.id == product.id);
+    _notifier.value = products.length;
   }
 }

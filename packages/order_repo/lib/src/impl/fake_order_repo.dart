@@ -15,7 +15,8 @@ class FakeOrderRepo implements OrderRepo {
 
   @override
   Future<void> create(List<Product> products, double cost) async {
-    _storage.add(
+    _storage.insert(
+      0,
       Order(
         id: 'order${_storage.length}',
         number: _storage.length,
