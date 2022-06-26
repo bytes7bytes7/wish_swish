@@ -1,12 +1,30 @@
 {
-    "helloWorld": "Привет, мир!",
-    "timesPushed": "Вы нажали на кнопку {times} раз",
-    "@timesPushed": {
+    "authorization": "Авторизация",
+    "catalog": "Каталог",
+    "enterEmail": "Введите email",
+    "enterPassword":"Введите пароль",
+    "language": "Русский",
+    "logIn": "Войти",
+    "navError": "Ошибка навигации",
+    "noConnection": "Нет подключения",
+    "order": "Заказ №{number}",
+    "@order": {
         "placeholders": {
-            "times": {
+            "number": {
                 "type": "int"
             }
         }
     },
-    "language": "Русский"
+    "orderHistory": "История покупок",
+    "pay": "Оплатить",
+    "pieces": "{amount} шт.",
+    "@pieces": {
+        "placeholders": {
+            "amount": {
+                "type": "int"
+            }
+        }
+    },
+    "slogan": "Сделай жизнь проще",
+    "total": "Итого"
 }
