@@ -30,6 +30,8 @@ class CategoryScreen extends StatelessWidget {
           }
 
           if (state is CategoryDataState) {
+            final categories = state.categories;
+
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -52,10 +54,10 @@ class CategoryScreen extends StatelessWidget {
                       crossAxisSpacing: const_measures.mainHorPadding,
                       mainAxisSpacing: const_measures.mainHorPadding,
                     ),
-                    itemCount: state.categories.length,
+                    itemCount: categories.length,
                     itemBuilder: (context, index) {
                       return CategoryCard(
-                        category: state.categories[index],
+                        category: categories[index],
                       );
                     },
                   ),

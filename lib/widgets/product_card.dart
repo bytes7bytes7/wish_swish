@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:product_repo/product_repo.dart';
 
 import '../blocs/blocs.dart';
+import '../common.dart';
+import '../constants/app.dart' as const_app;
 import '../constants/measures.dart' as const_measures;
 import 'notifier_button.dart';
 
@@ -18,11 +20,13 @@ class ProductCard extends StatelessWidget {
     required this.product,
     required this.isInCart,
     required this.cartBloc,
+    this.onPressed,
   });
 
   final Product product;
   final bool isInCart;
   final CartBloc cartBloc;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +96,7 @@ class ProductCard extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    '${_beautifyCost(product.cost)} ₽',
+                    '${beautifyCost(product.cost)} ${const_app.rubleSign}',
                     style: theme.textTheme.headline3,
                   ),
                 ],
@@ -102,11 +106,18 @@ class ProductCard extends StatelessWidget {
                 height: const_measures.smallButtonSize,
                 width: const_measures.smallButtonSize,
                 child: NotifierButton(
+                  key: ValueKey(product.hashCode),
                   initValue: isInCart,
                   onTrueChild: const Icon(Icons.delete_outline),
                   onFalseChild: const Icon(Icons.shopping_cart_outlined),
-                  onTrueCallback: _remove,
-                  onFalseCallback: _add,
+                  onTrueCallback: () {
+                    _remove();
+                    onPressed?.call();
+                  },
+                  onFalseCallback: () {
+                    _add();
+                    onPressed?.call();
+                  },
                 ),
               ),
             ],
@@ -114,14 +125,6 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String _beautifyCost(double cost) {
-    if (cost == cost.toInt()) {
-      return '${cost.toInt()}';
-    }
-
-    return cost.toStringAsFixed(2);
   }
 
   void _add() {

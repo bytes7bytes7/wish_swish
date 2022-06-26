@@ -21,18 +21,18 @@ class NotifierButton extends StatefulWidget {
 }
 
 class _NotifierButtonState extends State<NotifierButton> {
-  late final ValueNotifier<bool> notifier;
+  late final ValueNotifier<bool> _notifier;
 
   @override
   void initState() {
     super.initState();
 
-    notifier = ValueNotifier(widget.initValue);
+    _notifier = ValueNotifier(widget.initValue);
   }
 
   @override
   void dispose() {
-    notifier.dispose();
+    _notifier.dispose();
 
     super.dispose();
   }
@@ -40,11 +40,11 @@ class _NotifierButtonState extends State<NotifierButton> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-      valueListenable: notifier,
+      valueListenable: _notifier,
       builder: (context, value, child) {
         return ElevatedButton(
           onPressed: () {
-            final oldValue = notifier.value;
+            final oldValue = _notifier.value;
 
             if (oldValue) {
               widget.onTrueCallback();
@@ -52,7 +52,7 @@ class _NotifierButtonState extends State<NotifierButton> {
               widget.onFalseCallback();
             }
 
-            notifier.value = !oldValue;
+            _notifier.value = !oldValue;
           },
           style: ButtonStyle(
             alignment: Alignment.center,

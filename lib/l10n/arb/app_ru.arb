@@ -1,6 +1,7 @@
 {
     "authorization": "Авторизация",
     "catalog": "Каталог",
+    "emptyCart": "Корзина пуста",
     "enterEmail": "Введите email",
     "enterPassword":"Введите пароль",
     "language": "Русский",

@@ -3,3 +3,4 @@ const logoPath = 'assets/svg/logo.svg';
 
 const category = 'category';
 const hasConnection = 'hasConnection';
+const rubleSign = '₽';
