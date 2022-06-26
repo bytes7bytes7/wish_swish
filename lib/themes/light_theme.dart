@@ -4,7 +4,8 @@ import '../constants/colors.dart' as const_colors;
 
 const _borderRadius = 8.0;
 const _buttonVerPadding = 21.0;
-const _iconSize = 24.0;
+const _bottomNavBarIconSize = 24.0;
+const _iconSize = 12.5;
 
 final lightTheme = ThemeData(
   scaffoldBackgroundColor: const_colors.white,
@@ -41,6 +42,7 @@ final lightTheme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
+      textStyle: MaterialStateProperty.all(_textTheme.button),
       foregroundColor: MaterialStateProperty.all(const_colors.white),
       backgroundColor: MaterialStateProperty.resolveWith(
         (states) {
@@ -67,12 +69,16 @@ final lightTheme = ThemeData(
     elevation: 4,
     selectedIconTheme: IconThemeData(
       color: const_colors.plainOcean,
-      size: _iconSize,
+      size: _bottomNavBarIconSize,
     ),
     unselectedIconTheme: IconThemeData(
       color: const_colors.silverChalice,
-      size: _iconSize,
+      size: _bottomNavBarIconSize,
     ),
+  ),
+  iconTheme: const IconThemeData(
+    color: const_colors.corn,
+    size: _iconSize,
   ),
   textTheme: _textTheme,
 );
@@ -81,33 +87,46 @@ const _textTheme = TextTheme(
   headline3: TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w500,
+    color: const_colors.mineShaft,
   ),
   headline4: TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
+    color: const_colors.mineShaft,
   ),
   headline5: TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
+    color: const_colors.mineShaft,
   ),
   headline6: TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
+    color: const_colors.mineShaft,
   ),
   bodyText1: TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
+    color: const_colors.white,
   ),
   bodyText2: TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w500,
+    color: const_colors.mineShaft,
   ),
   subtitle1: TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
+    color: const_colors.silverChalice,
   ),
   subtitle2: TextStyle(
     fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: const_colors.mineShaft,
+  ),
+  button: TextStyle(
+    fontSize: 14,
     fontWeight: FontWeight.w500,
+    color: const_colors.white,
   ),
 );
