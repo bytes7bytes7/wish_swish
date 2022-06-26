@@ -7,7 +7,6 @@ import '../constants/app.dart' as const_app;
 import '../constants/measures.dart' as const_measures;
 import '../constants/routes.dart' as const_routes;
 import '../l10n/l10n.dart';
-import '../widgets/listenable_text_controller.dart';
 import '../widgets/widgets.dart';
 
 final _emailExp = RegExp(r'^[\w.-]+@[A-Za-z0-9.-]+$');
@@ -37,6 +36,18 @@ class _AuthScreenState extends State<AuthScreen> {
     _passwordController = ListenableTextController()..clear();
     _passwdSub = _passwordController.stream.listen((_) => _onChanged());
     _isValid = ValueNotifier(false);
+  }
+
+  void _onChanged() {
+    if (_formKey.currentState?.validate() == true) {
+      if (!_isValid.value) {
+        _isValid.value = true;
+      }
+    } else {
+      if (_isValid.value) {
+        _isValid.value = false;
+      }
+    }
   }
 
   @override
@@ -102,7 +113,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  vertical: const_measures.smallVerPadding,
+                                  vertical: const_measures.smallPadding,
                                 ),
                                 child: SimpleTextField(
                                   controller: _emailController,
@@ -119,7 +130,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  vertical: const_measures.smallVerPadding,
+                                  vertical: const_measures.smallPadding,
                                 ),
                                 child: SimpleTextField(
                                   controller: _passwordController,
@@ -162,18 +173,6 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
-  }
-
-  void _onChanged() {
-    if (_formKey.currentState?.validate() == true) {
-      if (!_isValid.value) {
-        _isValid.value = true;
-      }
-    } else {
-      if (_isValid.value) {
-        _isValid.value = false;
-      }
-    }
   }
 
   void _toHome(BuildContext context) {

@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart' as const_colors;
+import '../constants/measures.dart' as const_measures;
 
-const _borderRadius = 8.0;
 const _buttonVerPadding = 21.0;
 const _bottomNavBarIconSize = 24.0;
-const _iconSize = 12.5;
+const _appBarElevation = 0.0;
+const _centerAppBarTitle = false;
 
 final lightTheme = ThemeData(
+  primaryColor: const_colors.plainOcean,
   scaffoldBackgroundColor: const_colors.white,
   hintColor: const_colors.silverChalice,
+  textTheme: _textTheme,
+  progressIndicatorTheme: const ProgressIndicatorThemeData(
+    color: const_colors.plainOcean,
+  ),
+  appBarTheme: AppBarTheme(
+    backgroundColor: const_colors.plainOcean,
+    titleTextStyle: _textTheme.headline6,
+    elevation: _appBarElevation,
+    centerTitle: _centerAppBarTitle,
+    titleSpacing: const_measures.mainHorPadding,
+  ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle: _textTheme.subtitle1,
     errorStyle: const TextStyle(
@@ -19,25 +32,33 @@ final lightTheme = ThemeData(
       borderSide: const BorderSide(
         color: const_colors.gallery,
       ),
-      borderRadius: BorderRadius.circular(_borderRadius),
+      borderRadius: BorderRadius.circular(
+        const_measures.borderRadius,
+      ),
     ),
     enabledBorder: OutlineInputBorder(
       borderSide: const BorderSide(
         color: const_colors.gallery,
       ),
-      borderRadius: BorderRadius.circular(_borderRadius),
+      borderRadius: BorderRadius.circular(
+        const_measures.borderRadius,
+      ),
     ),
     focusedBorder: OutlineInputBorder(
       borderSide: const BorderSide(
         color: const_colors.plainOcean,
       ),
-      borderRadius: BorderRadius.circular(_borderRadius),
+      borderRadius: BorderRadius.circular(
+        const_measures.borderRadius,
+      ),
     ),
     errorBorder: OutlineInputBorder(
       borderSide: const BorderSide(
         color: const_colors.monza,
       ),
-      borderRadius: BorderRadius.circular(_borderRadius),
+      borderRadius: BorderRadius.circular(
+        const_measures.borderRadius,
+      ),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -54,7 +75,9 @@ final lightTheme = ThemeData(
       ),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(_borderRadius),
+          borderRadius: BorderRadius.circular(
+            const_measures.borderRadius,
+          ),
         ),
       ),
       padding: MaterialStateProperty.all(
@@ -78,9 +101,7 @@ final lightTheme = ThemeData(
   ),
   iconTheme: const IconThemeData(
     color: const_colors.corn,
-    size: _iconSize,
   ),
-  textTheme: _textTheme,
 );
 
 const _textTheme = TextTheme(
@@ -102,12 +123,12 @@ const _textTheme = TextTheme(
   headline6: TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: const_colors.mineShaft,
+    color: const_colors.white,
   ),
   bodyText1: TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: const_colors.white,
+    color: const_colors.mineShaft,
   ),
   bodyText2: TextStyle(
     fontSize: 15,

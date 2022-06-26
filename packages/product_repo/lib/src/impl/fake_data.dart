@@ -12,7 +12,7 @@ const products1 = [
     title: 'Томаты',
     rating: 1.0,
     cost: 100.5,
-    image: 'https://gkskia.ru/wp-content/uploads/2019/12/p3.jpg',
+    image: '',
   ),
 ];
 

@@ -15,7 +15,15 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   final CategoryRepo _categoryRepo;
 
-  Future<void> _load(CategoryLoadEvent event, Emitter<CategoryState> emit) {
-    return _categoryRepo.load();
+  Future<void> _load(
+    CategoryLoadEvent event,
+    Emitter<CategoryState> emit,
+  ) async {
+    if (state is! CategoryLoadingState) {
+      emit(const CategoryLoadingState());
+    }
+
+    final categories = await _categoryRepo.load();
+    emit(CategoryDataState(categories: categories));
   }
 }
