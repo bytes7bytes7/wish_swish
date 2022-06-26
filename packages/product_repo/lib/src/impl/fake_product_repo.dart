@@ -24,19 +24,4 @@ class FakeProductRepo implements ProductRepo {
       }
     });
   }
-
-  @override
-  Future<void> pick(Product product) {
-    return Future.delayed(_duration);
-  }
-
-  @override
-  Future<void> remove(Product product) {
-    return Future.delayed(_duration);
-  }
-
-  @override
-  Future<void> clear() {
-    return Future.delayed(_duration);
-  }
 }

@@ -4,7 +4,7 @@ abstract class OrderState extends Equatable {
   const OrderState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class OrderInitState extends OrderState {
@@ -21,5 +21,5 @@ class OrderDataState extends OrderState {
   final List<Order> orders;
 
   @override
-  List<Object> get props => [orders];
+  List<Object?> get props => [orders];
 }

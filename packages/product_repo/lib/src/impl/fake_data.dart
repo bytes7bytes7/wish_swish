@@ -12,7 +12,7 @@ const products1 = [
     title: 'Томаты',
     rating: 1.0,
     cost: 100.5,
-    image: '',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg',
   ),
 ];
 
@@ -53,7 +53,7 @@ const products3 = [
     title: 'Рис',
     rating: 5.0,
     cost: 12.0,
-    image: 'https://m.media-amazon.com/images/I/81EZ66uHk2L.jpg',
+    image: '',
   ),
   Product(
     id: 'productID6',

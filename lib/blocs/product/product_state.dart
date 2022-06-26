@@ -18,14 +18,10 @@ class ProductLoadingState extends ProductState {
 class ProductDataState extends ProductState {
   const ProductDataState({
     required this.products,
-    required this.cart,
-    required this.cartCost,
   });
 
   final List<ProductWrapper> products;
-  final List<ProductWrapper> cart;
-  final double cartCost;
 
   @override
-  List<Object?> get props => [products, cart, cartCost];
+  List<Object?> get props => [products];
 }

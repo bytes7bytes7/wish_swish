@@ -1,3 +1,5 @@
+import 'package:product_repo/product_repo.dart';
+
 import '../models/order.dart';
 import '../order_repo.dart';
 
@@ -12,8 +14,17 @@ class FakeOrderRepo implements OrderRepo {
   }
 
   @override
-  Future<void> create(Order order) {
-    _storage.add(order);
+  Future<void> create(List<Product> products, double cost) async {
+    _storage.add(
+      Order(
+        id: 'order${_storage.length}',
+        number: _storage.length,
+        totalCost: cost,
+        dateTime: DateTime.now(),
+        products: products,
+      ),
+    );
+
     return Future.delayed(_duration);
   }
 }

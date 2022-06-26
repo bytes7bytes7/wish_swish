@@ -1,8 +1,11 @@
 // ignore_for_file: unused_element
 
+import 'package:category_repo/category_repo.dart';
 import 'package:flutter/material.dart';
 
+import 'constants/app.dart' as const_app;
 import 'constants/routes.dart' as const_routes;
+import 'screens/products_screen.dart';
 import 'screens/screens.dart';
 
 class ScreenRouter {
@@ -25,6 +28,19 @@ class ScreenRouter {
         return _route(const AuthScreen());
       case const_routes.home:
         return _route(const HomeScreen());
+      case const_routes.products:
+        final category = args[const_app.category];
+        final hasConnection = args[const_app.hasConnection];
+        if (category is Category && hasConnection is ValueNotifier<bool>) {
+          return _route(
+            ProductsScreen(
+              category: category,
+              hasConnection: hasConnection,
+            ),
+          );
+        }
+
+        return _route(const NotFoundScreen());
       default:
         return _route(const NotFoundScreen());
     }

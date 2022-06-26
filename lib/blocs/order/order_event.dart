@@ -4,7 +4,7 @@ abstract class OrderEvent extends Equatable {
   const OrderEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class OrderLoadEvent extends OrderEvent {
@@ -12,10 +12,14 @@ class OrderLoadEvent extends OrderEvent {
 }
 
 class OrderCreateEvent extends OrderEvent {
-  const OrderCreateEvent({required this.order});
+  const OrderCreateEvent({
+    required this.products,
+    required this.cost,
+  });
 
-  final Order order;
+  final List<Product> products;
+  final double cost;
 
   @override
-  List<Object> get props => [order];
+  List<Object?> get props => [products, cost];
 }

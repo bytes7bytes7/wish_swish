@@ -3,7 +3,7 @@ class User {
     required this.id,
     required this.name,
     required this.surname,
-    required this.avatar,
+    this.avatar = '',
   });
 
   final String id;

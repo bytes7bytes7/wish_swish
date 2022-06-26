@@ -21,7 +21,6 @@ final lightTheme = ThemeData(
     titleTextStyle: _textTheme.headline6,
     elevation: _appBarElevation,
     centerTitle: _centerAppBarTitle,
-    titleSpacing: const_measures.mainHorPadding,
   ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle: _textTheme.subtitle1,

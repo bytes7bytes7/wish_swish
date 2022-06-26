@@ -26,7 +26,7 @@ class CategoryScreen extends StatelessWidget {
       child: BlocBuilder<CategoryBloc, CategoryState>(
         builder: (context, state) {
           if (state is CategoryInitState) {
-            categoryBloc.add(const CategoryLoadEvent());
+            _onRefresh(categoryBloc);
           }
 
           if (state is CategoryDataState) {

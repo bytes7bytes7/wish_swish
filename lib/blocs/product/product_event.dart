@@ -15,25 +15,3 @@ class ProductLoadEvent extends ProductEvent {
   @override
   List<Object?> get props => [categoryID];
 }
-
-class ProductPickEvent extends ProductEvent {
-  const ProductPickEvent({required this.productWrapper});
-
-  final ProductWrapper productWrapper;
-
-  @override
-  List<Object?> get props => [productWrapper];
-}
-
-class ProductRemoveEvent extends ProductEvent {
-  const ProductRemoveEvent({required this.productWrapper});
-
-  final ProductWrapper productWrapper;
-
-  @override
-  List<Object?> get props => [productWrapper];
-}
-
-class ProductClearEvent extends ProductEvent {
-  const ProductClearEvent();
-}
