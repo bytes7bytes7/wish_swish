@@ -19,16 +19,19 @@ class OrderCard extends StatelessWidget {
     final theme = Theme.of(context);
     final l10n = context.l10n;
 
-    return Padding(
-      padding: const EdgeInsets.all(
-        const_measures.midVerPadding,
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        vertical: const_measures.smallPadding,
       ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: theme.disabledColor,
-          borderRadius: BorderRadius.circular(
-            const_measures.bigBorderRadius,
-          ),
+      decoration: BoxDecoration(
+        color: theme.disabledColor,
+        borderRadius: BorderRadius.circular(
+          const_measures.bigBorderRadius,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(
+          const_measures.midVerPadding,
         ),
         child: Column(
           children: [
@@ -66,23 +69,51 @@ class OrderCard extends StatelessWidget {
                 final title = ord.title;
                 final cost = ord.cost;
 
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      title,
-                      style: theme.textTheme.bodyText1,
-                    ),
-                    Text(
-                      '${beautifyCost(cost)} ${const_app.rubleSign}',
-                      style: theme.textTheme.bodyText1,
-                    ),
-                  ],
+                return _OrderItem(
+                  title: title,
+                  cost: cost,
+                  theme: theme,
                 );
               },
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _OrderItem extends StatelessWidget {
+  const _OrderItem({
+    // ignore: unused_element
+    super.key,
+    required this.title,
+    required this.cost,
+    required this.theme,
+  });
+
+  final String title;
+  final double cost;
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: const_measures.midVerPadding,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: theme.textTheme.bodyText1,
+          ),
+          Text(
+            '${beautifyCost(cost)} ${const_app.rubleSign}',
+            style: theme.textTheme.bodyText1,
+          ),
+        ],
       ),
     );
   }

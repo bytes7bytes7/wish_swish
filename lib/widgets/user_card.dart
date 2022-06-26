@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../constants/measures.dart' as const_measures;
 
+const _separator = SizedBox(width: 8.0);
+
 class UserCard extends StatelessWidget {
   const UserCard({
     super.key,
@@ -18,23 +20,25 @@ class UserCard extends StatelessWidget {
 
     return Row(
       children: [
-        Container(
-          height: const_measures.avatarSize,
-          width: const_measures.avatarSize,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(),
+        CircleAvatar(
+          radius: const_measures.avatarRadius,
+          backgroundColor: theme.disabledColor,
+          foregroundColor: theme.iconTheme.color,
+          child: ClipOval(
+            child: avatar.isNotEmpty
+                ? Image.network(
+                    avatar,
+                    height: 2 * const_measures.avatarRadius,
+                    width: 2 * const_measures.avatarRadius,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, trace) {
+                      return const Icon(Icons.photo);
+                    },
+                  )
+                : const Icon(Icons.photo),
           ),
-          child: avatar.isNotEmpty
-              ? Image.network(
-                  avatar,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, trace) {
-                    return const Icon(Icons.photo);
-                  },
-                )
-              : const Icon(Icons.photo),
         ),
+        _separator,
         Flexible(
           child: Text(
             '${user.name}\n${user.surname}',

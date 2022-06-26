@@ -6,5 +6,5 @@ const smallBorderRadius = 6.0;
 const borderRadius = 8.0;
 const bigBorderRadius = 12.0;
 const smallButtonSize = 40.0;
-const avatarSize = 84.0;
+const avatarRadius = 42.0;
 const circleLoadingSize = 25.0;

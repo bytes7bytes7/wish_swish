@@ -59,6 +59,11 @@ class CartScreen extends StatelessWidget {
         Expanded(
           child: BlocBuilder<CartBloc, CartState>(
             buildWhen: (prev, curr) {
+              if (curr is CartDataState && curr.products.isEmpty) {
+                listState = _ListState.empty;
+                return true;
+              }
+
               if (listState == _ListState.init) {
                 if (curr is CartDataState) {
                   listState = _ListState.data;
@@ -187,7 +192,7 @@ class _ProductListState extends State<_ProductList> {
     if (_products.isEmpty) {
       return Center(
         child: Text(
-          widget.l10n.emptyCart,
+          widget.l10n.empty,
           style: widget.theme.textTheme.bodyText1,
         ),
       );

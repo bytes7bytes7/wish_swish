@@ -1,7 +1,7 @@
 {
     "authorization": "Авторизация",
     "catalog": "Каталог",
-    "emptyCart": "Корзина пуста",
+    "empty": "Пусто",
     "enterEmail": "Введите email",
     "enterPassword":"Введите пароль",
     "error": "Ошибка",

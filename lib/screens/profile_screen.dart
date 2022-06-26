@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/blocs.dart';
+import '../constants/measures.dart' as const_measures;
 import '../l10n/l10n.dart';
 import '../widgets/widgets.dart';
+
+const _historyFlex = 3;
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -17,49 +20,79 @@ class ProfileScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            if (state is AuthSuccessState) {
-              return UserCard(
-                user: state.user,
+        Expanded(
+          child: BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              if (state is AuthSuccessState) {
+                return UserCard(
+                  user: state.user,
+                );
+              }
+
+              return const Center(
+                child: LoadingCircle(),
               );
-            }
-
-            return const Center(
-              child: LoadingCircle(),
-            );
-          },
+            },
+          ),
         ),
-        Text(
-          l10n.orderHistory,
-          style: theme.textTheme.headline4,
-        ),
-        BlocBuilder<OrderBloc, OrderState>(
-          builder: (context, state) {
-            if (state is OrderInitState) {
-              orderBloc.add(const OrderLoadEvent());
-            }
-
-            if (state is OrderDataState) {
-              final orders = state.orders;
-
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: orders.length,
-                  itemBuilder: (context, index) {
-                    return OrderCard(
-                      order: orders[index],
-                    );
-                  },
+        Flexible(
+          flex: _historyFlex,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: const_measures.smallPadding,
                 ),
-              );
-            }
+                child: Text(
+                  l10n.orderHistory,
+                  style: theme.textTheme.headline4,
+                ),
+              ),
+              BlocBuilder<OrderBloc, OrderState>(
+                builder: (context, state) {
+                  if (state is OrderInitState) {
+                    orderBloc.add(const OrderLoadEvent());
+                  }
 
-            return const Center(
-              child: LoadingCircle(),
-            );
-          },
-        ),
+                  if (state is OrderDataState) {
+                    final orders = state.orders;
+
+                    if (orders.isEmpty) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: const_measures.verPadding,
+                          ),
+                          child: Text(
+                            l10n.empty,
+                            style: theme.textTheme.bodyText1,
+                          ),
+                        ),
+                      );
+                    }
+
+                    return Expanded(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: orders.length,
+                        itemBuilder: (context, index) {
+                          return OrderCard(
+                            order: orders[index],
+                          );
+                        },
+                      ),
+                    );
+                  }
+
+                  return const Center(
+                    child: LoadingCircle(),
+                  );
+                },
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
