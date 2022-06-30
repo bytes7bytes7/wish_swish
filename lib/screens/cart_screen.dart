@@ -94,7 +94,7 @@ class CartScreen extends StatelessWidget {
 
               final products =
                   (state is CartDataState) ? state.products : <Product>[];
-              final isLoading = state is CartLoadingState;
+              final isLoading = state is! CartDataState;
 
               return Column(
                 children: [
