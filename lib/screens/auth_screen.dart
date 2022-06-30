@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,10 +20,8 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final ListenableTextController _emailController;
-  late final ListenableTextController _passwordController;
-  late final StreamSubscription _emailSub;
-  late final StreamSubscription _passwdSub;
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
   late final ValueNotifier<bool> _isValid;
 
   @override
@@ -33,10 +29,10 @@ class _AuthScreenState extends State<AuthScreen> {
     super.initState();
 
     // clear - позволяет пропустить первое значение `text`
-    _emailController = ListenableTextController()..clear();
-    _emailSub = _emailController.stream.listen((_) => _onChanged());
-    _passwordController = ListenableTextController()..clear();
-    _passwdSub = _passwordController.stream.listen((_) => _onChanged());
+    _emailController = TextEditingController()..clear();
+    _emailController.addListener(_onChanged);
+    _passwordController = TextEditingController()..clear();
+    _passwordController.addListener(_onChanged);
     _isValid = ValueNotifier(false);
   }
 
@@ -56,8 +52,6 @@ class _AuthScreenState extends State<AuthScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _emailSub.cancel();
-    _passwdSub.cancel();
     _isValid.dispose();
 
     super.dispose();
