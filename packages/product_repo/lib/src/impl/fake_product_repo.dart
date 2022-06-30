@@ -1,5 +1,5 @@
+import '../interface/product_repo.dart';
 import '../models/product.dart';
-import '../product_repo.dart';
 import 'fake_data.dart';
 
 const _duration = Duration(seconds: 2);

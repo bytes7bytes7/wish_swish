@@ -15,12 +15,6 @@ dependencies:
   # local
   auth_repo:
     path: packages/auth_repo
-  cart_repo:
-    path: packages/cart_repo
-  category_repo:
-    path: packages/category_repo
-  order_repo:
-    path: packages/order_repo
   product_repo:
     path: packages/product_repo
 

@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:category_repo/category_repo.dart';
 import 'package:equatable/equatable.dart';
+import 'package:product_repo/product_repo.dart';
 
 part 'category_event.dart';
 

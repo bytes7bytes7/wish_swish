@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cart_repo/cart_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:product_repo/product_repo.dart';
 

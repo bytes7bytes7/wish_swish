@@ -1,4 +1,4 @@
-import 'package:product_repo/product_repo.dart';
+import '../models/models.dart';
 
 abstract class CartRepo {
   const CartRepo();

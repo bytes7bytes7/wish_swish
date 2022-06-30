@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:order_repo/order_repo.dart';
+import 'package:product_repo/product_repo.dart';
 
 import '../common.dart';
 import '../constants/app.dart' as const_app;

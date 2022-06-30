@@ -1,6 +1,4 @@
-import 'package:product_repo/product_repo.dart';
-
-import 'models/models.dart';
+import '../models/models.dart';
 
 abstract class OrderRepo {
   Future<List<Order>> load();

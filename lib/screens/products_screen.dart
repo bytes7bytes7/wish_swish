@@ -1,4 +1,3 @@
-import 'package:category_repo/category_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_repo/product_repo.dart';

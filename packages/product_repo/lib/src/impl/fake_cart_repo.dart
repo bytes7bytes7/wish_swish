@@ -1,6 +1,5 @@
-import 'package:product_repo/product_repo.dart';
-
-import '../cart_repo.dart';
+import '../interface/cart_repo.dart';
+import '../models/models.dart';
 
 const _duration = Duration(seconds: 2);
 

@@ -1,4 +1,4 @@
-import 'package:product_repo/product_repo.dart';
+import 'product.dart';
 
 class Order {
   const Order({

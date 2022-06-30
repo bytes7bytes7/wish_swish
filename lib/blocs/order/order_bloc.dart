@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:order_repo/order_repo.dart';
 import 'package:product_repo/product_repo.dart';
 
 part 'order_event.dart';

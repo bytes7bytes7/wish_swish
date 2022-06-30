@@ -1,10 +1,8 @@
 import 'package:auth_repo/auth_repo.dart';
-import 'package:cart_repo/cart_repo.dart';
-import 'package:category_repo/category_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:order_repo/order_repo.dart';
+import 'package:product_repo/product_repo.dart';
 
 import 'blocs/blocs.dart';
 import 'constants/app.dart' as const_app;

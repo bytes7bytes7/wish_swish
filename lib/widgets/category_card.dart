@@ -1,5 +1,5 @@
-import 'package:category_repo/category_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:product_repo/product_repo.dart';
 
 import '../constants/app.dart' as const_app;
 import '../constants/measures.dart' as const_measures;

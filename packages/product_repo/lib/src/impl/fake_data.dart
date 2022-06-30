@@ -5,6 +5,36 @@ const category2 = 'categoryID2';
 const category3 = 'categoryID3';
 const category4 = 'categoryID4';
 
+final categories = [
+  Category(
+    id: category1,
+    title: 'Овощи',
+    amountOfProducts: products1.length,
+    image:
+        'https://img.freepik.com/free-photo/healthy-vegetables-on-wooden-table_1150-38014.jpg?w=2000',
+  ),
+  Category(
+    id: category2,
+    title: 'Молочка',
+    amountOfProducts: products2.length,
+    image:
+        'https://media.istockphoto.com/photos/various-fresh-dairy-products-picture-id544807136?k=20&m=544807136&s=612x612&w=0&h=iqb23gbUKWgewmunHXd_yzJbYsZDa0fMDz64Ux6OJSc=',
+  ),
+  Category(
+    id: category3,
+    title: 'Бакалея',
+    amountOfProducts: products3.length,
+    image: '',
+  ),
+  Category(
+    id: category4,
+    title: 'Снэки',
+    amountOfProducts: products4.length,
+    image:
+        'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c25hY2tzfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+  ),
+];
+
 const products1 = [
   Product(
     id: 'productID1',

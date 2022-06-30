@@ -1,4 +1,4 @@
-import '../category_repo.dart';
+import '../interface/category_repo.dart';
 import '../models/models.dart';
 import 'fake_data.dart';
 
