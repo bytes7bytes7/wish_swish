@@ -7,9 +7,6 @@ import '../custom/always_bouncing_scroll_physics.dart';
 import '../l10n/l10n.dart';
 import '../widgets/widgets.dart';
 
-const _crossAxisCount = 2;
-const _childAspectRatio = 5 / 4;
-
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
 
@@ -49,8 +46,8 @@ class CategoryScreen extends StatelessWidget {
                     physics: const AlwaysBouncingScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: _crossAxisCount,
-                      childAspectRatio: _childAspectRatio,
+                      crossAxisCount: 2,
+                      childAspectRatio: 5 / 4,
                       crossAxisSpacing: const_measures.mainHorPadding,
                       mainAxisSpacing: const_measures.mainHorPadding,
                     ),

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
 
-const _size = Size.fromHeight(56.0);
-
 // ignore: prefer_mixin
 class NetworkAppBar extends StatelessWidget with PreferredSizeWidget {
   const NetworkAppBar({
@@ -16,7 +14,7 @@ class NetworkAppBar extends StatelessWidget with PreferredSizeWidget {
   final ValueNotifier<bool> hasConnection;
 
   @override
-  Size get preferredSize => _size;
+  Size get preferredSize => const Size.fromHeight(56.0);
 
   @override
   Widget build(BuildContext context) {

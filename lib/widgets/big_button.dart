@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-const _widthFactor = 1.0;
-
 class BigButton extends StatelessWidget {
   const BigButton({
     super.key,
@@ -15,7 +13,7 @@ class BigButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      widthFactor: _widthFactor,
+      widthFactor: 1,
       child: ElevatedButton(
         onPressed: onPressed,
         child: child,

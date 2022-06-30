@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart' as const_colors;
 import '../constants/measures.dart' as const_measures;
 
-const _buttonVerPadding = 21.0;
-const _bottomNavBarIconSize = 24.0;
-const _appBarElevation = 0.0;
-const _centerAppBarTitle = false;
-
 final lightTheme = ThemeData(
   primaryColor: const_colors.plainOcean,
   scaffoldBackgroundColor: const_colors.white,
@@ -20,8 +15,8 @@ final lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: const_colors.plainOcean,
     titleTextStyle: _textTheme.headline6,
-    elevation: _appBarElevation,
-    centerTitle: _centerAppBarTitle,
+    elevation: 0,
+    centerTitle: false,
   ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle: _textTheme.subtitle1,
@@ -82,7 +77,7 @@ final lightTheme = ThemeData(
       ),
       padding: MaterialStateProperty.all(
         const EdgeInsets.symmetric(
-          vertical: _buttonVerPadding,
+          vertical: 21,
         ),
       ),
     ),
@@ -92,11 +87,11 @@ final lightTheme = ThemeData(
     elevation: 4,
     selectedIconTheme: IconThemeData(
       color: const_colors.plainOcean,
-      size: _bottomNavBarIconSize,
+      size: 24,
     ),
     unselectedIconTheme: IconThemeData(
       color: const_colors.silverChalice,
-      size: _bottomNavBarIconSize,
+      size: 24,
     ),
   ),
   iconTheme: const IconThemeData(

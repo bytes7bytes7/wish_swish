@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../constants/measures.dart' as const_measures;
 
-const _separator = SizedBox(width: 8.0);
-
 class UserCard extends StatelessWidget {
   const UserCard({
     super.key,
@@ -38,7 +36,9 @@ class UserCard extends StatelessWidget {
                 : const Icon(Icons.photo),
           ),
         ),
-        _separator,
+        const SizedBox(
+          width: 8.0,
+        ),
         Flexible(
           child: Text(
             '${user.name}\n${user.surname}',

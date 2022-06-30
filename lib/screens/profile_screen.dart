@@ -6,8 +6,6 @@ import '../constants/measures.dart' as const_measures;
 import '../l10n/l10n.dart';
 import '../widgets/widgets.dart';
 
-const _historyFlex = 3;
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -36,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
         Flexible(
-          flex: _historyFlex,
+          flex: 3,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

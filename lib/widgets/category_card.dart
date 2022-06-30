@@ -7,8 +7,6 @@ import '../constants/routes.dart' as const_routes;
 import '../l10n/l10n.dart';
 import 'widgets.dart';
 
-const _separator = SizedBox(height: 4.0);
-
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
     super.key,
@@ -58,7 +56,9 @@ class CategoryCard extends StatelessWidget {
                 ),
               ),
             ),
-            _separator,
+            const SizedBox(
+              height: 4.0,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

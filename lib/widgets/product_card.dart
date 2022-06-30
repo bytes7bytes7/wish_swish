@@ -7,11 +7,7 @@ import '../constants/app.dart' as const_app;
 import '../constants/measures.dart' as const_measures;
 import 'notifier_button.dart';
 
-const _separator = SizedBox(width: const_measures.smallPadding);
-const _iconSize = 18.0;
 const _height = 60.0;
-const _leftIconPadding = 9.25;
-const _rightIconPadding = 5.25;
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -67,7 +63,9 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
               ),
-              _separator,
+              const SizedBox(
+                width: const_measures.smallPadding,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,12 +78,12 @@ class ProductCard extends StatelessWidget {
                       ),
                       const Padding(
                         padding: EdgeInsets.only(
-                          left: _leftIconPadding,
-                          right: _rightIconPadding,
+                          left: 9.25,
+                          right: 5.25,
                         ),
                         child: Icon(
                           Icons.star,
-                          size: _iconSize,
+                          size: 18,
                         ),
                       ),
                       Text(
