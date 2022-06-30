@@ -23,7 +23,8 @@ class SimpleTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: isObscure,
-      validator: validator,
+      validator: (_) => validator(controller.text),
+      // validator provides previous controller.text, so I need to pass current text manually
       enabled: enabled,
       style: theme.textTheme.subtitle2,
       decoration: InputDecoration(
